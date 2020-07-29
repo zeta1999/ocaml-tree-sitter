@@ -18,7 +18,12 @@ fi
   cd tree-sitter
   git clean -dfX
   make
-  sudo make install
+
+  if [[ -z "${HOMEBREW}" ]]; then
+    sudo make install
+  else
+    make install
+  fi
 
   # Ensure libtree-sitter is found at linking time.
   # MacOS doesn't have ldconfig. Maybe it works without it?
